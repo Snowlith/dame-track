@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgwiimdjoosvg"]
+
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_570pm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_na1ol"]
+size = Vector3(0.75, 0.25, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jocs"]
+size = Vector3(1, 0.25, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_d5qam"]
+points = PackedVector3Array(-0.5, -0.125, -0.25, -0.5, 0.125, -0.25, 0.5, -0.125, -0.25, -0.5, -0.125, 0.25, -0.5, 0.125, 0.25, 0.5, 0.125, -0.25, 0.5, -0.125, 0.25, 0.5, 0.125, 0.25)
+
+[node name="RigidBody3D" type="RigidBody3D"]
+script = ExtResource("1_570pm")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.125548, 0.254695, 0)
+mesh = SubResource("BoxMesh_na1ol")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.127348, 0)
+mesh = SubResource("BoxMesh_4jocs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.127348, 0)
+shape = SubResource("ConvexPolygonShape3D_d5qam")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.421764, 0.121601, 0.236476)
+
+[node name="RayCast3D" type="RayCast3D" parent="Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0397283)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -3.09086e-08, -1.28028e-08, 3.09086e-08, 1, 0, 1.28028e-08, 0, 1, -0.513732, 0.031913, 1.59701)

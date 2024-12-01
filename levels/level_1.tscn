@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddnfxdwey10ch"]
+[gd_scene load_steps=6 format=3 uid="uid://ddnfxdwey10ch"]
 
 [ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="1_fgs8g"]
+[ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jabow"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,7 +28,7 @@ shadow_enabled = true
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 material_override = ExtResource("1_fgs8g")
 use_collision = true
-size = Vector3(1000, 0, 1000)
+size = Vector3(1000, 1, 1000)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10691, 0)
+[node name="RigidBody3D" parent="." instance=ExtResource("2_bheb7")]
+transform = Transform3D(-0.759215, -0.352097, 0.547377, -0.25102, 0.934371, 0.252863, -0.600485, 0.0545741, -0.797772, 0, 2.25302, 0)
