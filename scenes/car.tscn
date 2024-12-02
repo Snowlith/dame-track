@@ -32,22 +32,23 @@ shape = SubResource("ConvexPolygonShape3D_5iwva")
 
 [node name="FrontLeftWheel" parent="." instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, 0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.254889, 0.45)
 is_front_wheel = true
+grip_curve = 49036.4
 
 [node name="FrontRightWheel" parent="." instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.254889, 0.45)
 is_front_wheel = true
 
 [node name="BackLeftWheel" parent="." instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.2, -0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.254889, -0.45)
 
 [node name="BackRightWheel" parent="." instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, -0.45)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.254889, -0.45)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.28445, 0.299576, -0.910683, 2.38281e-08, 0.949923, 0.312484, 0.958691, -0.0888861, 0.270206, -1.47908, 0.615031, 0.580535)
+transform = Transform3D(-1, 0, -8.74228e-08, -2.10073e-08, 0.9707, 0.240296, 8.48613e-08, 0.240296, -0.9707, 0, 1.13202, -1.94603)
 current = true

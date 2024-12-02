@@ -2,19 +2,21 @@ extends RigidBody3D
 class_name Car
 
 @export var engine_power: float = 200
+@export var steering_angle: float = 20
 @onready var wheels: Array[Wheel] = [%FrontLeftWheel, %FrontRightWheel, %BackLeftWheel, %BackRightWheel]
 
-var input: Vector2
+var acceleration_input: float
+var steering_input: float
 
 func _ready() -> void:
 	for wheel: Wheel in wheels:
-		wheel.add_collision_exception(self)
+		wheel.add_exception(self)
 
 func _physics_process(delta: float) -> void:
-	print(" ")
-	input = Input.get_vector("left", "right", "down", "up")
+	acceleration_input = Input.get_axis("down", "up")
+	steering_input = Input.get_axis("right", "left")
+	
+	%FrontLeftWheel.rotation.y = steering_input * deg_to_rad(steering_angle)
+	%FrontRightWheel.rotation.y = steering_input * deg_to_rad(steering_angle)
 	for wheel: Wheel in wheels:
 		wheel.apply_forces(self, delta)
-	
-func get_point_velocity(point: Vector3) -> Vector3:
-	return linear_velocity + angular_velocity.cross(point - global_position)
