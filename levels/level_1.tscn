@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddnfxdwey10ch"]
+[gd_scene load_steps=9 format=3 uid="uid://ddnfxdwey10ch"]
 
 [ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="1_fgs8g"]
 [ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
@@ -16,6 +16,13 @@ sky = SubResource("Sky_2q0xu")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_5mja7"]
+size = Vector3(4, 1, 4)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7nwmj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_p47hl"]
+
 [node name="Level1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -30,5 +37,24 @@ material_override = ExtResource("1_fgs8g")
 use_collision = true
 size = Vector3(1000, 1, 1000)
 
-[node name="RigidBody3D" parent="." instance=ExtResource("2_bheb7")]
-transform = Transform3D(-0.759215, -0.352097, 0.547377, -0.25102, 0.934371, 0.252863, -0.600485, 0.0545741, -0.797772, 0, 2.25302, 0)
+[node name="Car" parent="." instance=ExtResource("2_bheb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2036, 0)
+linear_velocity = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.73487, 0.155865, 0)
+mesh = SubResource("BoxMesh_5mja7")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05547, 4.20814)
+mass = 0.459
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_7nwmj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_p47hl")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.5512e-08, 0.583073, -0.812419, 2.54869e-08, 0.812419, 0.583073, 1, 0, -4.37114e-08, -4.7289, 5.00995, 0)
