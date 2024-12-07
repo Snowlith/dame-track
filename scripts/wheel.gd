@@ -1,6 +1,8 @@
 extends RayCast3D
 class_name Wheel
 
+@export var debug: bool = false
+
 @export var wheel_radius: float = 0.15
 @export var is_front_wheel: bool = false
 
@@ -15,16 +17,25 @@ class_name Wheel
 @onready var spring_resting_length: float = target_position.length()
 @onready var mesh: Node3D = $MeshInstance3D
 
-var _previous_spring_length: float = 0
+var _previous_spring_length: float
+
+# TODO: add a wheel velocity
 
 # TODO: linearly interpolate wheel position
 
 func _ready():
 	# Ensure that raycast is updated as early as possible each frame
-	process_physics_priority = -5
+	process_physics_priority = -100
+	
+	_previous_spring_length = spring_resting_length
+	_update_mesh_position(1)
+
+func _process(delta):
+	_update_mesh_position(delta)
 
 func apply_forces(car: Car, delta: float) -> void:
 	if not is_colliding():
+		_previous_spring_length = spring_resting_length
 		return
 	var collision_point: Vector3 = get_collision_point()
 	apply_suspension(car, collision_point, delta)
@@ -42,7 +53,8 @@ func apply_acceleration(car: Car, collision_point: Vector3) -> void:
 	
 	car.apply_force(acceleration_force, collision_point - car.global_position)
 	
-	DebugDraw3D.draw_arrow(collision_point, collision_point + acceleration_force * 0.002, Color(0, 0, 1,), 0.05, true)
+	if debug:
+		DebugDraw3D.draw_arrow(collision_point, collision_point + acceleration_force * 0.002, Color(0, 0, 1,), 0.05, true)
 
 func apply_suspension(car: Car, collision_point: Vector3, delta: float) -> void:
 	var spring_direction: Vector3 = global_basis.y
@@ -66,19 +78,29 @@ func apply_suspension(car: Car, collision_point: Vector3, delta: float) -> void:
 	car.apply_force(suspension_force, collision_point - car.global_position)
 	
 	# Adjust visuals
-	DebugDraw3D.draw_arrow(collision_point, collision_point + suspension_force * 0.002, Color(0, 1, 0,), 0.05, true)
-	mesh.position.y = -spring_length + wheel_radius
+	if debug:
+		DebugDraw3D.draw_arrow(collision_point, collision_point + suspension_force * 0.002, Color(0, 1, 0,), 0.05, true)
 
 func apply_steering(car: Car, collision_point: Vector3, delta: float) -> void:
 	var steering_direction: Vector3 = global_basis.x
-	var state := PhysicsServer3D.body_get_direct_state( car.get_rid() )
-	var local_velocity := state.get_velocity_at_local_position( global_position - car.global_position )
+	var state := PhysicsServer3D.body_get_direct_state(car.get_rid())
+	var local_velocity := state.get_velocity_at_local_position(global_position - car.global_position)
+	
+	# THIS IS TEMPORARY
+	mesh.rotation.x += local_velocity.dot(global_basis.z) * 0.1
 	
 	var lateral_velocity: float = steering_direction.dot(local_velocity)
 		
-	var steering_force = steering_direction * (-lateral_velocity * grip)
+	var steering_force: Vector3 = steering_direction * (-lateral_velocity * grip)
 	
 	car.apply_force(steering_force, collision_point - car.global_position)
 	
-	DebugDraw3D.draw_arrow(collision_point, collision_point + steering_force * 0.002, Color(1, 0, 0,), 0.05, true)
+	if debug:
+		DebugDraw3D.draw_arrow(collision_point, collision_point + steering_force * 0.002, Color(1, 0, 0,), 0.05, true)
+
+func _update_mesh_position(delta: float = 1):
+	if delta >= 1:
+		mesh.position.y = -spring_resting_length + wheel_radius
+		return
+	mesh.position.y = lerp(mesh.position.y, -_previous_spring_length + wheel_radius, 50 * delta)
 	

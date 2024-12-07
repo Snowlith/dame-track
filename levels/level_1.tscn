@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ddnfxdwey10ch"]
+[gd_scene load_steps=9 format=3 uid="uid://ddnfxdwey10ch"]
 
 [ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="1_fgs8g"]
 [ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
+[ext_resource type="Script" path="res://scripts/car_camera.gd" id="3_bin0m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jabow"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,8 +49,11 @@ shape = SubResource("SphereShape3D_7nwmj")
 mesh = SubResource("SphereMesh_p47hl")
 skeleton = NodePath("../CollisionShape3D")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("car")]
 transform = Transform3D(-3.5512e-08, 0.583073, -0.812419, 2.54869e-08, 0.812419, 0.583073, 1, 0, -4.37114e-08, -4.7289, 5.00995, 0)
+current = true
+script = ExtResource("3_bin0m")
+car = NodePath("../Car")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.142904, 4.71495)
@@ -78,6 +82,54 @@ use_collision = true
 size = Vector3(2.47412, 0.791214, 6.28503)
 material = ExtResource("1_fgs8g")
 
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12883, 1.00671, 16.4401)
+use_collision = true
+size = Vector3(2.47412, 2.07444, 5.8139)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.81536, 1.00671, 19.0964)
+use_collision = true
+size = Vector3(2.47412, 2.07444, 6.28503)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.07201, 1.0438, 19.0667)
+use_collision = true
+size = Vector3(4.03027, 2.14861, 4.35345)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.07201, 1.55638, 22.4042)
+use_collision = true
+size = Vector3(4.03027, 3.85995, 4.35345)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.358971, 0, 0.933349, 0, 1, 0, -0.933349, 0, -0.358971, 9.3634, 1.55638, 14.0179)
+use_collision = true
+size = Vector3(9.23181, 3.85995, 4.10922)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.85212, 0, -0.523347, 0, 1, 0, 0.523347, 0, -0.85212, 5.61372, 2.99695, 12.4894)
+use_collision = true
+size = Vector3(8.85419, 0.978804, 1.46281)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D15" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.85212, 0, -0.523347, 0, 1, 0, 0.523347, 0, -0.85212, 2.42375, -0.0226665, 14.4357)
+use_collision = true
+size = Vector3(0.968109, 5.41096, 1.18746)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D14" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.424816, 0, -0.90528, 0, 1, 0, 0.90528, 0, -0.424816, 0.652411, 3.3172, 18.4387)
+use_collision = true
+size = Vector3(8.85419, 0.338301, 1.0269)
+material = ExtResource("1_fgs8g")
+
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14829, 0.166737, 4.83853)
 use_collision = true
@@ -86,6 +138,12 @@ material = ExtResource("1_fgs8g")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.890078, 0.455809, 0, -0.455809, 0.890078, -1.22201, 0.957879, 10.1955)
+use_collision = true
+size = Vector3(2.47412, 0.791214, 3.54074)
+material = ExtResource("1_fgs8g")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-0.283597, -0.437095, 0.853535, 0, 0.890078, 0.455809, -0.958944, 0.129266, -0.252423, 5.60967, 2.32741, 18.6865)
 use_collision = true
 size = Vector3(2.47412, 0.791214, 3.54074)
 material = ExtResource("1_fgs8g")
