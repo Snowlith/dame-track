@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmx4mkos7eosn"]
+
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_v56yk"]
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="2_3q2ah"]
+[ext_resource type="PackedScene" uid="uid://cc8bqpqup6yyo" path="res://scenes/dragwheel.tscn" id="3_2fgix"]
+
+[sub_resource type="Curve" id="Curve_b3r5q"]
+max_value = 125.0
+_data = [Vector2(0, 125), 0.0, 0.0, 0, 0, Vector2(0.394737, 125), 0.0, 0.0, 0, 0, Vector2(0.405263, 125), 0.0, 0.0, 0, 0, Vector2(0.636364, 125), 0.0, 0.0, 0, 0, Vector2(1, 125), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="PrismMesh" id="PrismMesh_dvl1m"]
+size = Vector3(1.715, 0.335, 1.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4jocs"]
+size = Vector3(0.52, 0.075, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7boed"]
+points = PackedVector3Array(0.26, 0.0375, 0.5, 0.26, -0.0375, 0.5, 0.26, 0.0375, -0.5, -0.26, 0.0375, 0.5, -0.26, -0.0375, 0.5, 0.26, -0.0375, -0.5, -0.26, 0.0375, -0.5, -0.26, -0.0375, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_trwur"]
+material = ExtResource("2_3q2ah")
+size = Vector3(0.15, 0.02, 0.005)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ngjy"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nrl46"]
+material = SubResource("StandardMaterial3D_1ngjy")
+
+[node name="Car" type="RigidBody3D"]
+mass = 100.0
+center_of_mass_mode = 1
+script = ExtResource("1_v56yk")
+engine_power = SubResource("Curve_b3r5q")
+top_speed = 500.0
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.25114e-08, 0, 0.515, 0, 0.515, 0, -0.515, 0, -2.25114e-08, 0, 0.264149, 0)
+mesh = SubResource("PrismMesh_dvl1m")
+skeleton = NodePath("../MeshInstance3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151014, 0)
+mesh = SubResource("BoxMesh_4jocs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.151014, 0)
+shape = SubResource("ConvexPolygonShape3D_7boed")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.155948, 0.158734, 0.500202)
+mesh = SubResource("BoxMesh_trwur")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.146291, 0.158734, 0.500202)
+mesh = SubResource("BoxMesh_trwur")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, 0.164192, 0.159966, -0.469885)
+mesh = SubResource("CylinderMesh_nrl46")
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, -0.00045298, 0.159966, -0.469885)
+mesh = SubResource("CylinderMesh_nrl46")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, -2.18557e-09, -0.05, 0, 0.05, -2.18557e-09, -0.188453, 0.159966, -0.469885)
+mesh = SubResource("CylinderMesh_nrl46")
+
+[node name="Wheels" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.156675, 0)
+
+[node name="FrontLeftWheel" parent="Wheels" instance=ExtResource("3_2fgix")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.255, 0.318)
+
+[node name="BackLeftWheel" parent="Wheels" instance=ExtResource("3_2fgix")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.255, -0.318)
+
+[node name="BackRightWheel" parent="Wheels" instance=ExtResource("3_2fgix")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.255, -0.318)
+
+[node name="FrontRightWheel" parent="Wheels" instance=ExtResource("3_2fgix")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.255, 0.318)
+
+[node name="VelocityLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0

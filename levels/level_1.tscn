@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddnfxdwey10ch"]
+[gd_scene load_steps=10 format=3 uid="uid://ddnfxdwey10ch"]
 
 [ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="1_fgs8g"]
 [ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
 [ext_resource type="Script" path="res://scripts/car_camera.gd" id="3_bin0m"]
+[ext_resource type="PackedScene" uid="uid://bmx4mkos7eosn" path="res://scenes/dragcar.tscn" id="4_5ynhn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jabow"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -54,7 +55,7 @@ skeleton = NodePath("../CollisionShape3D")
 transform = Transform3D(-3.5512e-08, 0.583073, -0.812419, 2.54869e-08, 0.812419, 0.583073, 1, 0, -4.37114e-08, -4.7289, 5.00995, 0)
 current = true
 script = ExtResource("3_bin0m")
-car = NodePath("../Car")
+car = NodePath("../Car2")
 offset = Vector3(0, 1, -2)
 smooth_factor = 0.05
 
@@ -156,3 +157,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938568, 0.322212, 7.56004)
 use_collision = true
 size = Vector3(3.78601, 0.705444, 4.05743)
 material = ExtResource("1_fgs8g")
+
+[node name="Car2" parent="." instance=ExtResource("4_5ynhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84766, 0.5, 0.721641)

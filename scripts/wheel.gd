@@ -81,7 +81,7 @@ func apply_suspension(car: Car, collision_point: Vector3, delta: float) -> void:
 
 	var suspension_force: Vector3 = spring_direction * (spring_force + damping_force)
 	
-	#DebugDraw3D.draw_sphere(collision_point - car.global_position, 0.1)
+	# DebugDraw3D.draw_sphere(collision_point, 0.5)
 	
 	car.apply_force(suspension_force, collision_point - car.global_position)
 	

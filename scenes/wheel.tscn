@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://bi8hbvywy2drk" path="res://assets/materials/black.tres" id="2_j1lq3"]
 
 [sub_resource type="Curve" id="Curve_gs0la"]
-_data = [Vector2(0, 0.120879), 0.0, 0.0, 0, 1, Vector2(0.60515, 0.120879), 0.0, 0.0, 0, 0, Vector2(1, 0.758242), 1.61419, 0.0, 1, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.578947, 1), 0.0, 0.0, 0, 0, Vector2(0.984211, 1), 0.0, 0.0, 1, 0]
 point_count = 3
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_rlgwd"]
