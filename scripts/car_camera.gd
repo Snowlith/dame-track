@@ -27,8 +27,8 @@ func _physics_process(delta):
 	# Smoothly interpolate the current camera direction
 	_current_camera_direction = _current_camera_direction.slerp(target_direction, smooth_factor)
 	
-	DebugDraw3D.draw_line(_latest_car_position, _latest_car_position - _current_camera_direction)
-	DebugDraw3D.draw_line(_latest_car_position, _latest_car_position - target_direction)
+	#DebugDraw3D.draw_line(_latest_car_position, _latest_car_position - _current_camera_direction)
+	#DebugDraw3D.draw_line(_latest_car_position, _latest_car_position - target_direction)
 
 	# Update camera position and orientation
 	var target_position = _latest_car_position + _current_camera_direction * offset.z + Vector3(0, offset.y, 0)
