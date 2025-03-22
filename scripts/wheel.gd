@@ -19,20 +19,20 @@ var _previous_spring_length: float
 var _current_rotational_speed: float
 
 func _ready():
+	_previous_spring_length = spring_resting_length
+	
 	# Ensure that the ray cast is not a frame behind when applying forces
 	ray_cast.process_physics_priority = -100
 	
 	# Reset the mesh position
 	mesh.position.y = -spring_resting_length + wheel_mesh_radius
 	
-	_previous_spring_length = spring_resting_length
-	
 func _process(delta):
 	mesh.position.y = lerp(mesh.position.y, -_previous_spring_length + wheel_mesh_radius, 50 * delta)
 	mesh.rotation.x += _current_rotational_speed * delta
 
 # Called by the car to avoid wheel-car collisions
-func add_collision_exception(collision_object: CollisionObject3D):
+func add_collision_exception(collision_object: CollisionObject3D) -> void:
 	ray_cast.add_exception(collision_object)
 
 func apply_forces(car: Car, delta: float) -> void:

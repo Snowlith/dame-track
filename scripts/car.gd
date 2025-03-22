@@ -16,6 +16,9 @@ func _ready() -> void:
 		wheel.add_collision_exception(self)
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("jump"):
+		apply_central_impulse(Vector3.UP * jump_impulse)
+		
 	acceleration_input = Input.get_axis("forward", "backward")
 	steering_input = Input.get_axis("right", "left")
 	
@@ -23,9 +26,6 @@ func _physics_process(delta: float) -> void:
 	%FrontRightWheel.rotation.y = steering_input * deg_to_rad(steering_angle)
 	for wheel: Wheel in wheels:
 		wheel.apply_forces(self, delta)
-	
-	if Input.is_action_just_pressed("jump"):
-		apply_central_impulse(Vector3.UP * jump_impulse)
-	
+
 func _process(delta):
 	%SpeedBar.value = abs(linear_velocity.dot(global_basis.z))
