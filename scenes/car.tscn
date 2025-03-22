@@ -1,13 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgwiimdjoosvg"]
+[gd_scene load_steps=14 format=3 uid="uid://cgwiimdjoosvg"]
 
-[ext_resource type="Script" path="res://scripts/car.gd" id="1_570pm"]
+[ext_resource type="Script" uid="uid://buqku22hul5e8" path="res://scripts/car.gd" id="1_570pm"]
 [ext_resource type="PackedScene" uid="uid://r74d5i57cb1n" path="res://scenes/wheel.tscn" id="2_2kcmq"]
 [ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="2_ibrfg"]
 [ext_resource type="Texture2D" uid="uid://dryf7mvpc3bgt" path="res://addons/kenney_prototype_textures/orange/texture_01.png" id="3_mbdwp"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jtldb"]
+friction = 0.0
+
 [sub_resource type="Curve" id="Curve_b3r5q"]
-max_value = 125.0
-_data = [Vector2(0, 125), 0.0, 0.0, 0, 0, Vector2(0.394737, 125), 0.0, 0.0, 0, 0, Vector2(0.405263, 125), 0.0, 0.0, 0, 0, Vector2(0.636364, 125), 0.0, 0.0, 0, 0, Vector2(1, 125), 0.0, 0.0, 0, 0]
+_limits = [0.0, 350.0, 0.0, 1.0]
+_data = [Vector2(0, 196.901), 0.0, 0.0, 0, 0, Vector2(0.345238, 293.595), 0.0, 0.0, 0, 0, Vector2(0.479167, 350), 0.0, 0.0, 0, 0, Vector2(0.854167, 350), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="BoxMesh" id="BoxMesh_na1ol"]
@@ -36,73 +39,92 @@ size = Vector3(0.09, 0.09, 0.05)
 points = PackedVector3Array(0.25, 0.125, 0.5, 0.25, -0.125, 0.5, 0.25, 0.125, -0.5, -0.25, 0.125, 0.5, -0.25, -0.125, 0.5, 0.25, -0.125, -0.5, -0.25, 0.125, -0.5, -0.25, -0.125, -0.5)
 
 [node name="Car" type="RigidBody3D"]
+physics_interpolation_mode = 1
 mass = 100.0
+physics_material_override = SubResource("PhysicsMaterial_jtldb")
 center_of_mass_mode = 1
 script = ExtResource("1_570pm")
 engine_power = SubResource("Curve_b3r5q")
-top_speed = 500.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.408273, -0.135838)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.348295, -0.135838)
 mesh = SubResource("BoxMesh_na1ol")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.369121, 0.0375555)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.309143, 0.0375555)
 mesh = SubResource("BoxMesh_0ply3")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.369121, -0.328276)
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0.309143, -0.328276)
 mesh = SubResource("BoxMesh_0ply3")
 skeleton = NodePath("../MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263286, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203308, 0)
 mesh = SubResource("BoxMesh_4jocs")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171894, 0.302034, 0.514383)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171894, 0.242056, 0.514383)
 mesh = SubResource("BoxMesh_trwur")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164192, 0.302034, 0.514383)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164192, 0.242056, 0.514383)
 mesh = SubResource("BoxMesh_trwur")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171894, 0.302034, -0.500266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.171894, 0.242056, -0.500266)
 mesh = SubResource("BoxMesh_s4jkv")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164192, 0.302034, -0.500266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.164192, 0.242056, -0.500266)
 mesh = SubResource("BoxMesh_s4jkv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.263286, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203308, 0)
 shape = SubResource("ConvexPolygonShape3D_5iwva")
 
 [node name="Wheels" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0734033, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.136686, 0)
 
 [node name="FrontLeftWheel" parent="Wheels" instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0, 1, 0.249596, 0.254889, 0.317921)
+transform = Transform3D(1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0, 1, 0.233069, 0.254889, 0.317921)
 is_front_wheel = true
 
 [node name="FrontRightWheel" parent="Wheels" instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.249318, 0.254889, 0.316186)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228588, 0.254889, 0.316186)
 is_front_wheel = true
 
 [node name="BackLeftWheel" parent="Wheels" instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.245261, 0.254889, -0.333053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.228734, 0.254889, -0.333053)
 
 [node name="BackRightWheel" parent="Wheels" instance=ExtResource("2_2kcmq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.250327, 0.254889, -0.315087)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.229597, 0.254889, -0.315087)
 
-[node name="VelocityLabel" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.0
+offset_top = -40.0
+offset_right = 28.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedBar" type="ProgressBar" parent="HBoxContainer"]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 23.0
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+show_percentage = false

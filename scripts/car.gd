@@ -10,6 +10,7 @@ var acceleration_input: float
 var steering_input: float
 
 func _ready() -> void:
+	%SpeedBar.max_value = top_speed
 	for wheel: Wheel in wheels:
 		wheel.add_collision_exception(self)
 
@@ -25,4 +26,5 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		apply_central_impulse(Vector3.UP * 500)
 	
-	%VelocityLabel.text = str(round(Vector2(linear_velocity.x, linear_velocity.z).length()))
+func _process(delta):
+	%SpeedBar.value = abs(linear_velocity.dot(global_basis.z))

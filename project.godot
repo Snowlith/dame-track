@@ -12,8 +12,16 @@ config_version=5
 
 config/name="Dame Track"
 run/main_scene="res://levels/level_1.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[debug_draw_3d]
+
+settings/updates/check_for_updates=false
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [input]
 
@@ -45,4 +53,5 @@ jump={
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
+common/physics_ticks_per_second=30
+common/physics_interpolation=true
