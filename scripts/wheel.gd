@@ -1,9 +1,9 @@
 extends Node3D
 class_name Wheel
 
-@export var debug: bool = false
+@export var show_debug_arrows: bool = false
 
-@export var wheel_mesh_radius: float = 0.1
+@export var wheel_mesh_radius: float = 0.2
 @export var is_front_wheel: bool = false
 @export var spring_strength: float = 1500
 @export var spring_damping: float = 300
@@ -47,9 +47,9 @@ func apply_forces(car: Car, delta: float) -> void:
 	var steering_force: Vector3 = _get_steering_force(car, delta)
 	var friction_force: Vector3 = _get_friction_force(car, delta, suspension_force)
 	
-	if debug:
+	if show_debug_arrows:
+		DebugDraw3D.draw_arrow(collision_point, collision_point + suspension_force * 0.005, Color.WEB_GREEN, 0.05, true)
 		DebugDraw3D.draw_arrow(collision_point, collision_point + acceleration_force * 0.01, Color.BLUE, 0.05, true)
-		DebugDraw3D.draw_arrow(collision_point, collision_point + suspension_force * 0.005, Color.GREEN, 0.05, true)
 		DebugDraw3D.draw_arrow(collision_point, collision_point + steering_force * 0.005, Color.RED, 0.05, true)
 		DebugDraw3D.draw_arrow(collision_point, collision_point + friction_force * 0.05, Color.YELLOW, 0.05, true)
 		
