@@ -7,7 +7,7 @@ class_name Wheel
 @export var is_front_wheel: bool = false
 @export var spring_strength: float = 1500
 @export var spring_damping: float = 300
-@export var friction_coefficient: float = 0.5
+@export var friction_coefficient: float = 0.05
 @export var steering_strength: float = 200
 @export var grip: Curve
 
@@ -42,10 +42,10 @@ func apply_forces(car: Car, delta: float) -> void:
 	
 	var collision_point: Vector3 = ray_cast.get_collision_point()
 	
-	var suspension_force: Vector3 = _get_suspension_force(car, collision_point, delta)
+	var suspension_force: Vector3 = _get_suspension_force(collision_point, delta)
 	var acceleration_force: Vector3 = _get_acceleration_force(car)
-	var steering_force: Vector3 = _get_steering_force(car, delta)
-	var friction_force: Vector3 = _get_friction_force(car, delta, suspension_force)
+	var steering_force: Vector3 = _get_steering_force(car)
+	var friction_force: Vector3 = _get_friction_force(car, suspension_force)
 	
 	if show_debug_arrows:
 		DebugDraw3D.draw_arrow(collision_point, collision_point + suspension_force * 0.005, Color.WEB_GREEN, 0.05, true)
@@ -58,7 +58,7 @@ func apply_forces(car: Car, delta: float) -> void:
 	car.apply_force(net_force, collision_point - car.global_position)
 
 # Calculate the force the ray cast would apply if it were a damped spring
-func _get_suspension_force(car: Car, collision_point: Vector3, delta: float) -> Vector3:
+func _get_suspension_force(collision_point: Vector3, delta: float) -> Vector3:
 	var spring_direction: Vector3 = global_basis.y
 	
 	var spring_length: float = (collision_point - ray_cast.global_position).length()
@@ -91,7 +91,7 @@ func _get_acceleration_force(car: Car) -> Vector3:
 	return acceleration_direction * torque
 
 # Calculate the force necessary to align the car's velocity to the wheels
-func _get_steering_force(car: Car, delta: float) -> Vector3:
+func _get_steering_force(car: Car) -> Vector3:
 	var forward_direction: Vector3 = global_basis.z
 	var steering_direction: Vector3 = global_basis.x
 	var state := PhysicsServer3D.body_get_direct_state(car.get_rid())
@@ -112,7 +112,7 @@ func _get_steering_force(car: Car, delta: float) -> Vector3:
 	return steering_direction * steering_strength * desired_acceleration
 
 # Calculate friction using the normal force obtained from the suspension force
-func _get_friction_force(car: Car, delta: float, suspension_force: Vector3) -> Vector3:
+func _get_friction_force(car: Car, suspension_force: Vector3) -> Vector3:
 	var forward_direction: Vector3 = global_basis.z
 	var state := PhysicsServer3D.body_get_direct_state(car.get_rid())
 	var local_velocity := state.get_velocity_at_local_position(global_position - car.global_position)

@@ -10,7 +10,7 @@ var _current_camera_direction := Vector3.FORWARD
 func _physics_process(delta):
 	if not car:
 		return
-	
+		
 	var target_direction: Vector3
 	
 	if car.linear_velocity.length() > velocity_threshold:

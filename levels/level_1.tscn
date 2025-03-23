@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ddnfxdwey10ch"]
 
-[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://assets/materials/orange.tres" id="1_fgs8g"]
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="1_fgs8g"]
 [ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
 [ext_resource type="Script" uid="uid://c0unomkrwegpp" path="res://scripts/car_camera.gd" id="3_bin0m"]
 

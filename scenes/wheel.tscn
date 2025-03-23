@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://r74d5i57cb1n"]
 
 [ext_resource type="Script" uid="uid://5cqt6548lfsd" path="res://scripts/wheel.gd" id="1_bmt5t"]
-[ext_resource type="Material" uid="uid://bi8hbvywy2drk" path="res://assets/materials/black.tres" id="2_j1lq3"]
+[ext_resource type="Material" uid="uid://bi8hbvywy2drk" path="res://materials/rubber.tres" id="2_j1lq3"]
 
 [sub_resource type="Curve" id="Curve_gs0la"]
-_data = [Vector2(0, 0.263282), 0.0, 0.825603, 0, 1, Vector2(0.517857, 0.690827), 1.68595, 1.68595, 0, 0, Vector2(1, 1), 0.641248, 0.0, 1, 0]
+_data = [Vector2(0, 0.263282), 0.0, 0.483581, 0, 1, Vector2(0.610119, 0.558324), 1.68595, 1.68595, 0, 0, Vector2(1, 1), 1.13285, 0.0, 1, 0]
 point_count = 3
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_nqe5f"]
@@ -21,7 +21,6 @@ height = 0.622
 process_physics_priority = -5
 script = ExtResource("1_bmt5t")
 wheel_mesh_radius = 0.15
-friction_coefficient = 0.05
 grip = SubResource("Curve_gs0la")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

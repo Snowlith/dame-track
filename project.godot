@@ -23,6 +23,12 @@ settings/updates/check_for_updates=false
 
 window/vsync/vsync_mode=0
 
+[file_customization]
+
+folder_colors={
+"res://levels/": "green"
+}
+
 [input]
 
 forward={
