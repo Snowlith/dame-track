@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5ssuljex15f8"]
+
+[ext_resource type="Material" uid="uid://balyu5odtm18w" path="res://materials/road.tres" id="1_butc4"]
+[ext_resource type="Material" uid="uid://cmajjlrvd7wo" path="res://materials/red.tres" id="2_0odvk"]
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="2_xtdve"]
+[ext_resource type="Material" uid="uid://m5cc3au4v836" path="res://materials/stone.tres" id="3_0odvk"]
+[ext_resource type="PackedScene" uid="uid://d4akjfplug8mr" path="res://scenes/props/pole.tscn" id="4_jvevs"]
+
+[node name="RoadStart" type="Node3D"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_butc4")
+use_collision = true
+size = Vector3(4, 0.1, 4)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+material_override = ExtResource("2_0odvk")
+use_collision = true
+size = Vector3(3.5, 0.5, 3.5)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -1.5005)
+material_override = ExtResource("2_xtdve")
+size = Vector3(3, 0.5, 0.001)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 1.4995)
+material_override = ExtResource("2_xtdve")
+size = Vector3(3, 0.5, 0.001)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.5, 1.7, -0.000499964)
+material_override = ExtResource("2_xtdve")
+size = Vector3(3, 0.5, 0.001)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1.7, -0.000499964)
+material_override = ExtResource("2_xtdve")
+size = Vector3(3, 0.5, 0.001)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.1, 0)
+material_override = ExtResource("3_0odvk")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -1.75)
+material_override = ExtResource("3_0odvk")
+use_collision = true
+size = Vector3(3, 0.1, 0.5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.1, 0)
+material_override = ExtResource("3_0odvk")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)
+
+[node name="Pole" parent="." instance=ExtResource("4_jvevs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -1.5)
+
+[node name="Pole2" parent="." instance=ExtResource("4_jvevs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 1.5)
+
+[node name="Pole3" parent="." instance=ExtResource("4_jvevs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -1.5)
+
+[node name="Pole4" parent="." instance=ExtResource("4_jvevs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 1.5)

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://f4hq7htwkdmu"]
+
+[ext_resource type="Material" uid="uid://balyu5odtm18w" path="res://materials/road.tres" id="1_olrsx"]
+[ext_resource type="Material" uid="uid://eop0k4bj7mex" path="res://materials/leaves.tres" id="2_olrsx"]
+
+[node name="RoadGrass" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_olrsx")
+use_collision = true
+size = Vector3(4, 0.1, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+material_override = ExtResource("2_olrsx")
+use_collision = true
+size = Vector3(4, 0.1, 4)

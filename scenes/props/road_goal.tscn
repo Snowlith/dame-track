@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://exr8wnfeqt81"]
+
+[ext_resource type="Material" uid="uid://balyu5odtm18w" path="res://materials/road.tres" id="1_hml75"]
+[ext_resource type="Material" uid="uid://m5cc3au4v836" path="res://materials/stone.tres" id="2_14f6v"]
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="2_836v2"]
+[ext_resource type="PackedScene" uid="uid://d4akjfplug8mr" path="res://scenes/props/pole.tscn" id="4_wyc73"]
+
+[node name="RoadGoal" type="Node3D"]
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_hml75")
+use_collision = true
+size = Vector3(4, 0.1, 4)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.000499994)
+material_override = ExtResource("2_836v2")
+size = Vector3(3, 0.5, 0.001)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.1, 0)
+material_override = ExtResource("2_14f6v")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 1.75)
+material_override = ExtResource("2_14f6v")
+use_collision = true
+size = Vector3(3, 0.1, 0.5)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.1, 0)
+material_override = ExtResource("2_14f6v")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)
+
+[node name="Pole" parent="." instance=ExtResource("4_wyc73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0)
+
+[node name="Pole2" parent="." instance=ExtResource("4_wyc73")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0)

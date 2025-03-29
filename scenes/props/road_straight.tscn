@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj0s4j5nhhi34"]
+
+[ext_resource type="Material" uid="uid://balyu5odtm18w" path="res://materials/road.tres" id="1_x0wo6"]
+[ext_resource type="Material" uid="uid://m5cc3au4v836" path="res://materials/stone.tres" id="2_oytn0"]
+
+[node name="RoadStraight" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_x0wo6")
+use_collision = true
+size = Vector3(4, 0.1, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75, 0.1, 0)
+material_override = ExtResource("2_oytn0")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.1, 0)
+material_override = ExtResource("2_oytn0")
+use_collision = true
+size = Vector3(0.5, 0.1, 4)

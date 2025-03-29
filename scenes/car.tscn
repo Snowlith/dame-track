@@ -10,8 +10,8 @@ friction = 0.0
 
 [sub_resource type="Curve" id="Curve_b3r5q"]
 _limits = [0.0, 350.0, 0.0, 1.0]
-_data = [Vector2(0, 196.901), 0.0, 0.0, 0, 0, Vector2(0.345238, 293.595), 0.0, 0.0, 0, 0, Vector2(0.479167, 350), 0.0, 0.0, 0, 0, Vector2(0.854167, 350), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 5
+_data = [Vector2(0, 247.934), 0.0, 0.0, 0, 0, Vector2(0.21131, 347.314), 0.0, 0.0, 0, 0, Vector2(0.854167, 350), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_na1ol"]
 size = Vector3(0.465, 0.25, 0.37)
@@ -46,6 +46,7 @@ center_of_mass_mode = 1
 continuous_cd = true
 script = ExtResource("1_570pm")
 engine_power = SubResource("Curve_b3r5q")
+top_speed = 14.0
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.439056, -0.135838)

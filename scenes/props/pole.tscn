@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4akjfplug8mr"]
+
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="1_08mva"]
+
+[node name="Pole" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = ExtResource("1_08mva")
+use_collision = true
+size = Vector3(0.25, 2, 0.25)

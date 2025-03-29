@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhhdaubjs73g5"]
+
+[ext_resource type="Material" uid="uid://eop0k4bj7mex" path="res://materials/leaves.tres" id="2_y62c1"]
+
+[node name="Bush" type="Node3D"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -0.43434, 0.147636, 0.288196)
+material_override = ExtResource("2_y62c1")
+use_collision = true
+radius = 0.75
+rings = 4
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.361352, 0.247467, -0.442188)
+material_override = ExtResource("2_y62c1")
+use_collision = true
+radius = 0.75
+rings = 4
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.999658, 0.0261421, 0, -0.0184853, 0.706865, 0.707107, 0.0184853, -0.706865, 0.707107, 0.470798, 0.211647, 0.42342)
+material_override = ExtResource("2_y62c1")
+use_collision = true
+radius = 0.4
+radial_segments = 10

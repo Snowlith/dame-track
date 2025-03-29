@@ -1,8 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://ddnfxdwey10ch"]
+[gd_scene load_steps=21 format=3 uid="uid://ddnfxdwey10ch"]
 
-[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="1_fgs8g"]
+[ext_resource type="Material" uid="uid://m5cc3au4v836" path="res://materials/stone.tres" id="1_gwceb"]
 [ext_resource type="PackedScene" uid="uid://cgwiimdjoosvg" path="res://scenes/car.tscn" id="2_bheb7"]
 [ext_resource type="Script" uid="uid://c0unomkrwegpp" path="res://scripts/car_camera.gd" id="3_bin0m"]
+[ext_resource type="PackedScene" uid="uid://cj0s4j5nhhi34" path="res://scenes/props/road_straight.tscn" id="5_l53as"]
+[ext_resource type="PackedScene" uid="uid://byihalhxwwf8x" path="res://scenes/props/road_turn.tscn" id="6_3sk1a"]
+[ext_resource type="PackedScene" uid="uid://dcjiwl6omp0me" path="res://scenes/props/building_1x1.tscn" id="7_08mmt"]
+[ext_resource type="PackedScene" uid="uid://ce0lslvp73ao6" path="res://scenes/props/road_t_intersection.tscn" id="8_5ot28"]
+[ext_resource type="PackedScene" uid="uid://djgbpg8w5vvwi" path="res://scenes/props/road_ramp.tscn" id="9_aerfg"]
+[ext_resource type="PackedScene" uid="uid://dse2xqrkovcdq" path="res://scenes/props/tree_oak.tscn" id="10_nmsli"]
+[ext_resource type="PackedScene" uid="uid://b3cgv06j0j3cm" path="res://scenes/props/road_jump.tscn" id="11_5ot28"]
+[ext_resource type="PackedScene" uid="uid://exr8wnfeqt81" path="res://scenes/props/road_goal.tscn" id="11_aerfg"]
+[ext_resource type="PackedScene" uid="uid://c5ssuljex15f8" path="res://scenes/props/road_start.tscn" id="12_nmsli"]
+[ext_resource type="PackedScene" uid="uid://d4akjfplug8mr" path="res://scenes/props/pole.tscn" id="13_nmsli"]
+[ext_resource type="PackedScene" uid="uid://c6yojq8y8xm0" path="res://scenes/props/tree_spruce.tscn" id="14_betor"]
+[ext_resource type="PackedScene" uid="uid://f4hq7htwkdmu" path="res://scenes/props/road_grass.tscn" id="15_vjtdm"]
+[ext_resource type="PackedScene" uid="uid://bhhdaubjs73g5" path="res://scenes/props/bush.tscn" id="16_lrvbd"]
+[ext_resource type="PackedScene" uid="uid://b2sbqrupniuba" path="res://scenes/props/planter_box.tscn" id="17_oqlok"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jabow"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,10 +31,6 @@ sky = SubResource("Sky_2q0xu")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_7nwmj"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_p47hl"]
-
 [node name="Level1" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -30,25 +40,13 @@ environment = SubResource("Environment_awbtl")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.512451, 0)
-material_override = ExtResource("1_fgs8g")
+[node name="Ground" type="CSGBox3D" parent="."]
+material_override = ExtResource("1_gwceb")
 use_collision = true
 size = Vector3(1000, 2.0249, 1000)
 
 [node name="Car" parent="." instance=ExtResource("2_bheb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49202, 0)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.05547, 4.20814)
-mass = 0.459
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("SphereShape3D_7nwmj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("SphereMesh_p47hl")
-skeleton = NodePath("../CollisionShape3D")
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 1.49202, 4)
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("car")]
 transform = Transform3D(-3.5512e-08, 0.583073, -0.812419, 2.54869e-08, 0.812419, 0.583073, 1, 0, -4.37114e-08, -4.7289, 5.00995, 0)
@@ -56,101 +54,295 @@ current = true
 script = ExtResource("3_bin0m")
 car = NodePath("../Car")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.142904, 4.71495)
-use_collision = true
-material = ExtResource("1_fgs8g")
+[node name="Props" type="Node3D" parent="."]
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
-transform = Transform3D(-0.400141, -0.712721, -0.576121, 0.916454, -0.311188, -0.251545, -2.74788e-08, -0.628642, 0.777695, 0.836191, 0.361147, 4.71495)
-use_collision = true
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 4)
 
-[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
-transform = Transform3D(0.122746, -0.900872, 0.416369, 0.920102, -0.0539368, -0.387948, 0.371949, 0.430721, 0.822273, -1.71516, 0.151666, 5.1777)
-use_collision = true
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight14" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 8)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9243, 0.278114, 6.36213)
-use_collision = true
-size = Vector3(2.47412, 0.617249, 6.28503)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight10" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 3, 10)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.86406, 0.365096, 5.47048)
-use_collision = true
-size = Vector3(2.47412, 0.791214, 6.28503)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight2" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 0)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.12883, 1.00671, 16.4401)
-use_collision = true
-size = Vector3(2.47412, 2.07444, 5.8139)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight16" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 8)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.81536, 1.00671, 19.0964)
-use_collision = true
-size = Vector3(2.47412, 2.07444, 6.28503)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight9" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2, 0)
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.07201, 1.0438, 19.0667)
-use_collision = true
-size = Vector3(4.03027, 2.14861, 4.35345)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight8" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 1, 12)
 
-[node name="CSGBox3D11" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.07201, 1.55638, 22.4042)
-use_collision = true
-size = Vector3(4.03027, 3.85995, 4.35345)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight11" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 3, 14)
 
-[node name="CSGBox3D12" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.358971, 0, 0.933349, 0, 1, 0, -0.933349, 0, -0.358971, 9.3634, 1.55638, 14.0179)
-use_collision = true
-size = Vector3(9.23181, 3.85995, 4.10922)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight12" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2, 3, 14)
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.85212, 0, -0.523347, 0, 1, 0, 0.523347, 0, -0.85212, 5.61372, 2.99695, 12.4894)
-use_collision = true
-size = Vector3(8.85419, 0.978804, 1.46281)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight20" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 3, 14)
 
-[node name="CSGBox3D15" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.85212, 0, -0.523347, 0, 1, 0, 0.523347, 0, -0.85212, 2.42375, -0.0226665, 14.4357)
-use_collision = true
-size = Vector3(0.968109, 5.41096, 1.18746)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight21" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 3, 14)
 
-[node name="CSGBox3D14" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.424816, 0, -0.90528, 0, 1, 0, 0.90528, 0, -0.424816, 0.652411, 3.3172, 18.4387)
-use_collision = true
-size = Vector3(8.85419, 0.338301, 1.0269)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight13" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 3, 10)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.14829, 0.166737, 4.83853)
-use_collision = true
-size = Vector3(2.47412, 0.791214, 2.21429)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight15" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 3, -3.1594)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.890078, 0.455809, 0, -0.455809, 0.890078, -1.22201, 0.957879, 10.1955)
-use_collision = true
-size = Vector3(2.47412, 0.791214, 3.54074)
-material = ExtResource("1_fgs8g")
+[node name="RoadStraight17" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 3, -7.1594)
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.283597, -0.437095, 0.853535, 0, 0.890078, 0.455809, -0.958944, 0.129266, -0.252423, 5.60967, 2.32741, 18.6865)
-use_collision = true
-size = Vector3(2.47412, 0.791214, 3.54074)
-material = ExtResource("1_fgs8g")
+[node name="RoadTurn" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 1, -8)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938568, 0.322212, 7.56004)
-use_collision = true
-size = Vector3(3.78601, 0.705444, 4.05743)
-material = ExtResource("1_fgs8g")
+[node name="RoadTurn2" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 1, -8)
+
+[node name="RoadTurn9" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -22, 2, -4)
+
+[node name="RoadTurn5" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, 12)
+
+[node name="RoadTurn8" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, 14)
+
+[node name="RoadTurn6" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 1, 12)
+
+[node name="RoadTurn10" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -2, 1, 4)
+
+[node name="RoadTurn7" parent="Props" instance=ExtResource("6_3sk1a")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22, 3, 14)
+
+[node name="Building1x1" parent="Props" instance=ExtResource("7_08mmt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 0)
+
+[node name="Building1x2" parent="Props" instance=ExtResource("7_08mmt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 1, -8)
+
+[node name="RoadRamp" parent="Props" instance=ExtResource("9_aerfg")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6, 1, -4)
+
+[node name="TreeOak" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(0.745232, 0, 0.666806, 0, 1, 0, -0.666806, 0, 0.745232, 0, 1, 6)
+
+[node name="TreeOak3" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(0.745232, 0, 0.666806, 0, 1, 0, -0.666806, 0, 0.745232, -4, 1, -2)
+
+[node name="TreeOak4" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(0.745232, 0, 0.666806, 0, 1, 0, -0.666806, 0, 0.745232, -4, 1, 10)
+
+[node name="TreeOak5" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(-0.952868, 0, 0.303384, 0, 1, 0, -0.303384, 0, -0.952868, -27, 1, 6)
+
+[node name="TreeOak6" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(0.0967491, 0, 0.995309, 0, 1, 0, -0.995309, 0, 0.0967491, -13, 1, 1)
+
+[node name="TreeOak2" parent="Props" instance=ExtResource("10_nmsli")]
+transform = Transform3D(-0.887349, 0, -0.461098, 0, 1, 0, 0.461098, 0, -0.887349, 4, 1, -2)
+
+[node name="RoadJump" parent="Props" instance=ExtResource("11_5ot28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2, 2)
+
+[node name="RoadJump2" parent="Props" instance=ExtResource("11_5ot28")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 3, 8)
+
+[node name="RoadJump3" parent="Props" instance=ExtResource("11_5ot28")]
+transform = Transform3D(1, 0, 0, 0, 0.984783, -0.173786, 0, 0.173786, 0.984783, 2, 3.28821, 1.23319)
+
+[node name="RoadRamp2" parent="Props" instance=ExtResource("9_aerfg")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -6, 1, 4)
+
+[node name="RoadRamp3" parent="Props" instance=ExtResource("9_aerfg")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, -10, 1, 4)
+
+[node name="RoadStraight4" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 1, -4)
+
+[node name="RoadStraight5" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 2, -4)
+
+[node name="RoadStraight6" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -14, 2, -4)
+
+[node name="RoadStraight18" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 3, 14)
+
+[node name="RoadStraight7" parent="Props" instance=ExtResource("5_l53as")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18, 2, -4)
+
+[node name="RoadTIntersection" parent="Props" instance=ExtResource("8_5ot28")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 6, 1, -4)
+
+[node name="RoadTIntersection2" parent="Props" instance=ExtResource("8_5ot28")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -4)
+
+[node name="RoadGoal" parent="Props" instance=ExtResource("11_aerfg")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 3, -11.159)
+
+[node name="RoadStart" parent="Props" instance=ExtResource("12_nmsli")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 1, 4)
+
+[node name="Pole" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -6)
+
+[node name="Pole2" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -6)
+
+[node name="Pole3" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -10)
+
+[node name="Pole4" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
+
+[node name="Pole5" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 10)
+
+[node name="Pole6" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14)
+
+[node name="Pole7" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 14)
+
+[node name="Pole8" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 14)
+
+[node name="Pole9" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 10)
+
+[node name="Pole10" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -2)
+
+[node name="Pole11" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -2)
+
+[node name="Pole12" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -6)
+
+[node name="Pole13" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -6)
+
+[node name="Pole14" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, 8)
+
+[node name="Pole19" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -20, 3, 8)
+
+[node name="Pole20" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -22, 3, 8)
+
+[node name="Pole15" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 8)
+
+[node name="Pole16" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 1, 16)
+
+[node name="Pole17" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 16)
+
+[node name="Pole18" parent="Props" instance=ExtResource("13_nmsli")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 12)
+
+[node name="TreeOak7" parent="Props" instance=ExtResource("14_betor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 1)
+
+[node name="TreeOak8" parent="Props" instance=ExtResource("14_betor")]
+transform = Transform3D(0.622351, 0, 0.782739, 0, 1, 0, -0.782739, 0, 0.622351, 7.78337, 1, 5)
+
+[node name="TreeOak9" parent="Props" instance=ExtResource("14_betor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, 14)
+
+[node name="TreeOak10" parent="Props" instance=ExtResource("14_betor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -7.65213)
+
+[node name="TreeOak11" parent="Props" instance=ExtResource("14_betor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, 8.34787)
+
+[node name="RoadGrass" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 4)
+
+[node name="RoadGrass2" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 8)
+
+[node name="RoadGrass3" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+
+[node name="RoadGrass4" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 0)
+
+[node name="RoadGrass5" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 0)
+
+[node name="RoadGrass6" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 0)
+
+[node name="RoadGrass7" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 0)
+
+[node name="RoadGrass8" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 4)
+
+[node name="RoadGrass9" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 8)
+
+[node name="RoadGrass10" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 8)
+
+[node name="RoadGrass11" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 8)
+
+[node name="RoadGrass12" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 8)
+
+[node name="RoadGrass13" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1, 12)
+
+[node name="RoadGrass14" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 12)
+
+[node name="RoadGrass15" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, 12)
+
+[node name="RoadGrass16" parent="." instance=ExtResource("15_vjtdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 1, 12)
+
+[node name="Bush" parent="." instance=ExtResource("16_lrvbd")]
+transform = Transform3D(-0.0776413, 0, 0.996981, 0, 1, 0, -0.996981, 0, -0.0776413, -8, 1.29133, 10)
+
+[node name="Bush2" parent="." instance=ExtResource("16_lrvbd")]
+transform = Transform3D(-0.0776413, 0, 0.996981, 0, 1, 0, -0.996981, 0, -0.0776413, -10.2976, 1.29133, -0.0187807)
+
+[node name="Bush3" parent="." instance=ExtResource("16_lrvbd")]
+transform = Transform3D(-0.915782, 0, -0.401676, 0, 1, 0, 0.401676, 0, -0.915782, -17.6904, 1.29133, 1.05493)
+
+[node name="Bush4" parent="." instance=ExtResource("16_lrvbd")]
+transform = Transform3D(-0.461764, 0, -0.887003, 0, 1, 0, 0.887003, 0, -0.461764, -18.4691, 1.29133, 10.536)
+
+[node name="Pole" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, -7.63435)
+
+[node name="Pole2" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7719, 1, 5.03865)
+
+[node name="Pole3" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0555, 1, 13.9947)
+
+[node name="Pole4" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02548, 1, 10.0431)
+
+[node name="Pole5" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.97371, 1, -2.0515)
+
+[node name="Pole6" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.9813, 1, 6.00717)
+
+[node name="Pole7" parent="." instance=ExtResource("17_oqlok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.98874, 1, -1.98767)

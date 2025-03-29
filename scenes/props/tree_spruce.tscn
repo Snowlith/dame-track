@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6yojq8y8xm0"]
+
+[ext_resource type="Material" uid="uid://dca0cas1ywy1i" path="res://materials/wood.tres" id="1_2nc76"]
+[ext_resource type="Material" uid="uid://eop0k4bj7mex" path="res://materials/leaves.tres" id="2_p3r5q"]
+
+[node name="TreeOak" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.365051, 0)
+material_override = ExtResource("1_2nc76")
+use_collision = true
+radius = 0.25
+height = 0.730103
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.943014, -0.332754, 0, 0.332754, 0.943014, 0, 0, 0, 1, -0.0942817, 1.01908, 0)
+material_override = ExtResource("1_2nc76")
+radius = 0.199
+height = 0.833069
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.225033, 0.374814, -0.899375, -0.857347, 0.514739, 2.6938e-09, 0.462943, 0.771076, 0.437178, 0.30342, 1.63018, 0.712468)
+material_override = ExtResource("1_2nc76")
+radius = 0.085
+height = 0.833069
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.513471, 0.855235, -0.0701569, -0.857347, 0.514739, 2.51873e-08, 0.0361126, 0.0601489, 0.997536, 0.511596, 1.72052, 0.647892)
+material_override = ExtResource("1_2nc76")
+radius = 0.046
+height = 0.656281
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.894862, -0.346409, 0.281465, -0.369589, 0.92864, -0.032124, -0.250251, -0.132773, -0.959034, 0.0471954, 3.09501, 0.100229)
+material_override = ExtResource("1_2nc76")
+radius = 0.085
+height = 0.833069
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.189142, 1.82843, -0.00504401)
+material_override = ExtResource("2_p3r5q")
+radius = 0.798375
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0602515, 2.54591, -0.231582)
+material_override = ExtResource("2_p3r5q")
+radius = 0.565356
+
+[node name="CSGSphere3D5" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.985556, 0.16935, 0, -0.16935, 0.985556, 0, 0, 0, 1, -0.21666, 3.92318, 0.102738)
+material_override = ExtResource("2_p3r5q")
+radius = 0.238033
+rings = 4
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.999658, 0.0261421, 0, -0.0261421, 0.999658, 0, 0, 0, 1, -0.288878, 2.83297, -0.0981749)
+material_override = ExtResource("2_p3r5q")
+radius = 0.4
+radial_segments = 10
+
+[node name="CSGSphere3D4" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.999658, 0.0261421, 0, -0.0261421, 0.999658, 0, 0, 0, 1, -0.125221, 3.56422, 0.0496934)
+material_override = ExtResource("2_p3r5q")
+radius = 0.4
+radial_segments = 10

@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcjiwl6omp0me"]
+
+[ext_resource type="PackedScene" uid="uid://cfi5irtyxyxlc" path="res://scenes/props/road_sidewalk.tscn" id="1_ny044"]
+[ext_resource type="Material" uid="uid://cmajjlrvd7wo" path="res://materials/red.tres" id="2_besb4"]
+[ext_resource type="Material" uid="uid://jktjpcojupxg" path="res://materials/orange.tres" id="3_o1xbd"]
+
+[node name="Building1x1" type="Node3D"]
+
+[node name="RoadSidewalk" parent="." instance=ExtResource("1_ny044")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 3.64971, 0)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(0.5, 3.5, 3)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25, 3.64971, 0)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(0.5, 3.5, 3)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.14971, 0)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(2, 0.5, 3)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.14971, 0)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(2, 0.5, 3)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02471, 1)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(3, 1.75, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.27471, 0)
+material_override = ExtResource("3_o1xbd")
+size = Vector3(0.25, 0.5, 2.25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1, 1.02471, -1)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(0.5, 1.75, 0.5)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.25, 1.02471, -1)
+material_override = ExtResource("2_besb4")
+use_collision = true
+size = Vector3(0.5, 1.75, 0.5)
